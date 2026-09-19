@@ -1,0 +1,258 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Plus Jakarta Sans', var(--font-sans);
+  --font-mono: 'Space Grotesk', monospace;
+
+  /* Cinema Palette */
+  --bg-darkest: #040404;
+  --bg-black: #070707;
+  --bg-surface: #0e0e11;
+  --bg-surface-elevated: #16161c;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-active: rgba(255, 255, 255, 0.18);
+
+  /* Typography */
+  --text-primary: #F5F5F5;
+  --text-secondary: #B5B5B5;
+  --text-muted: #777777;
+
+  /* Brand Accents */
+  --accent-orange: #FF6600;
+  --accent-orange-glow: rgba(255, 102, 0, 0.25);
+  --accent-orange-hover: #ff771a;
+  --accent-blue: #0A84FF;
+  --accent-purple: #7C5CFF;
+
+  /* Studio Lighting Tokens */
+  --rim-highlight: rgba(255, 255, 255, 0.15);
+  --shadow-contact: 0 40px 100px -20px rgba(0, 0, 0, 0.95);
+  --shadow-device: 0 25px 60px -15px rgba(0, 0, 0, 0.85);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--bg-darkest);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-darkest);
+  overflow-x: hidden;
+  position: relative;
+}
+
+::selection {
+  background: var(--accent-orange);
+  color: #000000;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: #222222;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #333333;
+}
+
+/* Utility Classes */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Subtle Film Grain Noise Overlay (Cinematic feel) */
+.cinema-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Vignette */
+.cinema-vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(circle at center, transparent 45%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+/* Primary Button (Visually Dominant) */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background-color: var(--accent-orange);
+  color: #000000;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 25px -5px var(--accent-orange-glow);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  background-color: var(--accent-orange-hover);
+  box-shadow: 0 14px 30px -4px rgba(255, 102, 0, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary Button (Minimal, Elegant) */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+/* Micro badge */
+.badge-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-orange);
+  box-shadow: 0 0 8px var(--accent-orange);
+}
+
+/* Studio Glass Card */
+.studio-glass {
+  background: rgba(15, 15, 18, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+/* Animations & Dynamic Motion */
+@keyframes pulseSubtle {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes floatSmooth {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(0.8deg); }
+}
+
+@keyframes auroraFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes borderGlowPulse {
+  0%, 100% { border-color: rgba(255, 102, 0, 0.3); box-shadow: 0 0 15px rgba(255, 102, 0, 0.15); }
+  50% { border-color: rgba(236, 72, 153, 0.5); box-shadow: 0 0 25px rgba(236, 72, 153, 0.25); }
+}
+
+.animate-pulse-subtle {
+  animation: pulseSubtle 3s infinite ease-in-out;
+}
+
+.animate-float {
+  animation: floatSmooth 6s ease-in-out infinite;
+}
+
+.animate-aurora {
+  background-size: 200% 200%;
+  animation: auroraFlow 12s ease infinite;
+}
+
+.animate-border-glow {
+  animation: borderGlowPulse 4s ease-in-out infinite;
+}
+
+/* Background Ambient Living Aurora Mesh */
+.ambient-aurora-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle at 20% 30%, rgba(255, 102, 0, 0.04) 0%, transparent 50%),
+              radial-gradient(circle at 80% 60%, rgba(236, 72, 153, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 50% 80%, rgba(124, 92, 255, 0.04) 0%, transparent 50%);
+  filter: blur(80px);
+}
